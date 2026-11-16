@@ -1,0 +1,21 @@
+# Linux sunucuda Not Bekcisi'ni arka planda calistiran systemd servisi.
+# Sunucu yeniden baslasa ya da program cokse bile kendiliginden tekrar baslatir.
+# Kurulum adimlari icin SUNUCU.md dosyasina bak.
+
+[Unit]
+Description=Not Bekcisi (OBS not takibi)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/notbekcisi
+ExecStart=/home/ubuntu/notbekcisi/venv/bin/python main.py
+# Program hata ile kapanirsa 60 sn sonra yeniden baslat.
+Restart=on-failure
+RestartSec=60
+# Log satirlari beklemeden journalctl'e dussun.
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

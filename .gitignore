@@ -1,0 +1,14 @@
+# Gizli bilgiler (şifre, token) - asla yükleme
+.env
+*.key
+
+# Kişisel veriler ve çalışma çıktıları
+notlar.json
+notlar.tmp
+kesif_cikti.txt
+*.log
+
+# Python
+__pycache__/
+venv/
+.venv/
